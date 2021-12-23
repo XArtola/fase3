@@ -69,9 +69,13 @@ public class Hiztegia {
 	/**
 	 * Hiztegiko hitz bakoitzari erreferentziatzen dituen web-orriak esleitzen
 	 * zaizkio Aurre: Internet eta hiztegia kargatuta daude jadanik
+	 * 
+	 * @throws IOException
 	 */
 	private void hitzenWebakKonputatu() {
-
+//Proba
+//int kont =  0;
+//Proba
 		for (Web web : Internet.getInternetInstance().getWebak().getWebenLista()) {
 
 			String domeinua = web.getDomeinua();
@@ -87,12 +91,14 @@ public class Hiztegia {
 					if (bilaketa != null) {
 						// System.out.println("Domeinua: "+domeinua+" Gakoa: "+bilatzeko+" eta bilaketa:
 						// "+bilaketa.getDatua());
-		
+
 						// Hitzaren webenlistan, domeinua jada ez dagoela konprobatu
 						if (!bilaketa.getWebOrrienLista().getWebenLista().contains(web)) {
 
 							bilaketa.getWebOrrienLista().getWebenLista().add(web);
 							// System.out.println(bilaketa.getDatua() + "\t" + web.getDomeinua());
+							// errepikatuak +=bilaketa.getDatua() + "\t" + web.getDomeinua()+"\n";
+							// kont++;
 						}
 
 					}
@@ -103,6 +109,7 @@ public class Hiztegia {
 
 		}
 
+		// System.out.println("GUZTIRA "+kont+" elementu errepikatuta");
 	}
 
 	/**
@@ -118,10 +125,13 @@ public class Hiztegia {
 
 		hitzakKargatu(fitxIzena);
 		System.out.println("Hitzak kargatuta");
+
 		hitzenWebakKonputatu();
+
 		System.out.println("Hitzen webak konputatuta");
 
-		// Hiztegi klasea BZBHitzak klasearekin hasieratu bada bahetu metodoari deia egin
+		// Hiztegi klasea BZBHitzak klasearekin hasieratu bada bahetu metodoari deia
+		// egin
 		if (this.getHitzak().getClass().toString().equals("class fase3.BZBHitzak"))
 			// Casting aplikatu
 			((BZBHitzak) this.getHitzak()).bahetuHitzGakoak();

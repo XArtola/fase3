@@ -15,7 +15,7 @@ public class WebAplikazioa {
 		/*
 		 * BZBHitzak zuhaitza = new BZBHitzak(); h.setHiztegia(zuhaitza);
 		 */
-		
+
 		HitzenHashMapa<String, Hitza> hitzenHashMapa = new HitzenHashMapa<>();
 		h.setHiztegia(hitzenHashMapa);
 		h.hasieratu("fitxategiak/wordsshuffle.txt");

@@ -278,14 +278,8 @@ public class Internet {
 					unekoa = aurrekoa.get(unekoa);
 
 				}
-				
+
 				System.out.print(bidea);
-
-			/*	for (String url : bidea) {
-
-					System.out.print(url + ", ");
-
-				}*/
 
 			}
 
