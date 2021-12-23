@@ -60,8 +60,16 @@ public class WebenLista {
 	*/
 	public Web bilatuWebakUrlBidez(String url) {
 		
+		for(Web w :this.webenLista) {
+			
+			if(w.getDomeinua().equals(url))
+				
+				return w;
 		
+		}
 		
-	};
+		return null;
+		
+	}
 
 }

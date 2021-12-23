@@ -117,9 +117,12 @@ public class Hiztegia {
 	public void hasieratu(String fitxIzena) throws FileNotFoundException {
 
 		hitzakKargatu(fitxIzena);
+		System.out.println("Hitzak kargatuta");
 		hitzenWebakKonputatu();
+		System.out.println("Hitzen webak konputatuta");
+
 		// Hiztegi klasea BZBHitzak klasearekin hasieratu bada bahetu metodoari deia egin
-		if (this.getHitzak().getClass().toString().equals("class fase2.BZBHitzak"))
+		if (this.getHitzak().getClass().toString().equals("class fase3.BZBHitzak"))
 			// Casting aplikatu
 			((BZBHitzak) this.getHitzak()).bahetuHitzGakoak();
 

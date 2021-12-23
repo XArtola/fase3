@@ -2,6 +2,10 @@ package fase3;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Internet {
@@ -140,32 +144,153 @@ public class Internet {
 		}
 
 	}
-	
+
 	/**
-	* Bi URL emanda, jatorri-URLtik helburu-URLra esteken bide bat
-	* badagoen adierazten du.
-	* @param url1: Jatorri-URLa
-	* @param url2: Helburu-URLa
-	* @return: true bide bat badago, false bestela
-	*/
+	 * Bi URL emanda, jatorri-URLtik helburu-URLra esteken bide bat badagoen
+	 * adierazten du.
+	 * 
+	 * @param url1: Jatorri-URLa
+	 * @param url2: Helburu-URLa
+	 * @return: true bide bat badago, false bestela
+	 */
 	public boolean konektatutaDaude(String url1, String url2) {
-		
-		
-		
-		
-	};
-	
+
+		Web jatorria = this.webak.bilatuWebakUrlBidez(url1);
+
+		if (jatorria == null)
+
+			return false;
+
+		Web helburua = this.webak.bilatuWebakUrlBidez(url2);
+
+		if (helburua == null)
+
+			return false;
+
+		Queue<Web> itxaroteIlara = new LinkedList<Web>();
+		itxaroteIlara.add(jatorria);
+
+		// LinkedList<KaleErpina> bisitatuak = new LinkedList<KaleErpina>();
+		HashSet<Web> bisitatuak = new HashSet<Web>();
+
+		bisitatuak.add(jatorria); // markatu bisitatu gisa
+
+		HashMap<String, String> aurrekoa = new HashMap<String, String>();
+		aurrekoa.put(jatorria.getDomeinua(), null);
+
+		LinkedList<String> bidea = new LinkedList<String>();
+
+		while (!itxaroteIlara.isEmpty()) {
+
+			Web erpina = itxaroteIlara.poll();
+
+			for (Web w : erpina.getEstekenLista().getWebenLista()) {
+				// aurrekoa.put(w.kaleIzena, erpina.kaleIzena);
+
+				if (w.equals(helburua)) {
+					aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
+
+					bidea.add(helburua.getDomeinua());
+					break;
+				}
+
+				else if (!bisitatuak.contains(w)) {
+					aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
+
+					bisitatuak.add(w); // markatu bisitatu gisa
+					itxaroteIlara.add(w);
+				}
+			}
+		}
+
+		if (bidea.isEmpty())
+
+			return false;
+
+		else
+
+			return true;
+
+	}
+
 	/**
-	* Bi URL emanda, jatorri-URLtik helburu-URLra dagoen biderik motzena (esteka
-	* gutxien duena) inprimatzen du, bide hori existitzen bada.
-	* @param url1: Jatorri-URLa
-	* @param url2: Helburu-URLa
-	*/
+	 * Bi URL emanda, jatorri-URLtik helburu-URLra dagoen biderik motzena (esteka
+	 * gutxien duena) inprimatzen du, bide hori existitzen bada.
+	 * 
+	 * @param url1: Jatorri-URLa
+	 * @param url2: Helburu-URLa
+	 */
 	public void bideaInprimatu(String url1, String url2) {
-		
-		
-		
-		
-	};
+
+		Web jatorria = this.webak.bilatuWebakUrlBidez(url1);
+
+		Web helburua = this.webak.bilatuWebakUrlBidez(url2);
+
+		if (jatorria != null && helburua != null) {
+
+			Queue<Web> itxaroteIlara = new LinkedList<Web>();
+			itxaroteIlara.add(jatorria);
+
+			// LinkedList<KaleErpina> bisitatuak = new LinkedList<KaleErpina>();
+			HashSet<Web> bisitatuak = new HashSet<Web>();
+
+			bisitatuak.add(jatorria); // markatu bisitatu gisa
+
+			HashMap<String, String> aurrekoa = new HashMap<String, String>();
+			aurrekoa.put(jatorria.getDomeinua(), null);
+
+			// LinkedList<String> bidea = new LinkedList<String>();
+			String bidea = "";
+			while (!itxaroteIlara.isEmpty()) {
+
+				Web erpina = itxaroteIlara.poll();
+
+				for (Web w : erpina.getEstekenLista().getWebenLista()) {
+					// aurrekoa.put(w.kaleIzena, erpina.kaleIzena);
+
+					if (w.equals(helburua)) {
+						aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
+
+						// bidea.add(helburua.getDomeinua());
+						bidea = helburua.getDomeinua();
+						break;
+					}
+
+					else if (!bisitatuak.contains(w)) {
+						aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
+
+						bisitatuak.add(w); // markatu bisitatu gisa
+						itxaroteIlara.add(w);
+					}
+				}
+			}
+			// System.out.print(aurrekoa);
+
+			// if (bidea.isEmpty()) {
+			if (bidea != "") {
+				String unekoa = aurrekoa.get(helburua.getDomeinua());
+				while (unekoa != null) {
+					// System.out.print(unekoa + " ");
+					if (unekoa != null)
+						// bidea.addFirst(unekoa);
+						bidea = unekoa + ", " + bidea;
+					// System.out.print(unekoa + " ");
+					unekoa = aurrekoa.get(unekoa);
+
+				}
+				
+				System.out.print(bidea);
+
+			/*	for (String url : bidea) {
+
+					System.out.print(url + ", ");
+
+				}*/
+
+			}
+
+		}
+
+	}
 
 }
