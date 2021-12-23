@@ -106,10 +106,10 @@ public class WebAplikazioa {
 				if (i.konektatutaDaude(URL1, URL2)) {
 					System.out.println(URL1 + " URLtik " + URL2 + " URLra bidea, honakoa da");
 
-					System.out.print("<");
+				//	System.out.print("<");
 
 					i.bideaInprimatu(URL1, URL2);
-					System.out.print(">\n");
+				//	System.out.print(">\n");
 
 				} else {
 

@@ -278,8 +278,8 @@ public class Internet {
 					unekoa = aurrekoa.get(unekoa);
 
 				}
-				
-				System.out.print(bidea);
+				bidea = "< "+bidea+" >";
+				System.out.println(bidea);
 
 			}
 
