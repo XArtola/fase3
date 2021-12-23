@@ -131,7 +131,7 @@ public class Internet {
 		else {
 			int i = 0;
 
-			for (Web w : h.getWebOrrienLista().getWebenLista()) {
+			for (Web w : h.getWebOrrienLista().getWebenLista().values()) {
 
 				System.out.println("\t" + i + " - " + w.getDomeinua());
 
@@ -184,7 +184,7 @@ public class Internet {
 
 			Web erpina = itxaroteIlara.poll();
 
-			for (Web w : erpina.getEstekenLista().getWebenLista()) {
+			for (Web w : erpina.getEstekenLista().getWebenLista().values()) {
 				// aurrekoa.put(w.kaleIzena, erpina.kaleIzena);
 
 				if (w.equals(helburua)) {
@@ -245,7 +245,7 @@ public class Internet {
 
 				Web erpina = itxaroteIlara.poll();
 
-				for (Web w : erpina.getEstekenLista().getWebenLista()) {
+				for (Web w : erpina.getEstekenLista().getWebenLista().values()) {
 					// aurrekoa.put(w.kaleIzena, erpina.kaleIzena);
 
 					if (w.equals(helburua)) {
@@ -280,12 +280,6 @@ public class Internet {
 				}
 				
 				System.out.print(bidea);
-
-			/*	for (String url : bidea) {
-
-					System.out.print(url + ", ");
-
-				}*/
 
 			}
 

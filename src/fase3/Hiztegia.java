@@ -72,7 +72,7 @@ public class Hiztegia {
 	 */
 	private void hitzenWebakKonputatu() {
 
-		for (Web web : Internet.getInternetInstance().getWebak().getWebenLista()) {
+		for (Web web : Internet.getInternetInstance().getWebak().getWebenLista().values()) {
 
 			String domeinua = web.getDomeinua();
 
@@ -89,9 +89,9 @@ public class Hiztegia {
 						// "+bilaketa.getDatua());
 		
 						// Hitzaren webenlistan, domeinua jada ez dagoela konprobatu
-						if (!bilaketa.getWebOrrienLista().getWebenLista().contains(web)) {
+						if (bilaketa.getWebOrrienLista().getWebenLista().get(web.getId())!= null) {
 
-							bilaketa.getWebOrrienLista().getWebenLista().add(web);
+							bilaketa.getWebOrrienLista().getWebenLista().put(web.getId(),web);
 							// System.out.println(bilaketa.getDatua() + "\t" + web.getDomeinua());
 						}
 

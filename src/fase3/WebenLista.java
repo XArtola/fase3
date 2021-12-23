@@ -1,38 +1,39 @@
 package fase3;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class WebenLista {
 
-	private ArrayList<Web> webenLista;
-
+	// private ArrayList<Web> webenLista;
+	private Hashtable<Integer, Web> webenLista;
 	// Eraikitzailea
 
 	public WebenLista() {
 
-		this.setWebenLista(new ArrayList<Web>());
+		this.setWebenLista(new Hashtable<>());
 
 	}
 
 	// Get/Seterrak
 
-	public ArrayList<Web> getWebenLista() {
+	public Hashtable<Integer, Web> getWebenLista() {
 		return webenLista;
 	}
 
-	public void setWebenLista(ArrayList<Web> webenLista) {
+	public void setWebenLista(Hashtable<Integer, Web> webenLista) {
 		this.webenLista = webenLista;
 	}
 
 	/**
 	 * Web bat gehitzen dio listari
 	 * 
-	 * @param web: gehitzen den weba 
+	 * @param web: gehitzen den weba
 	 * 
-	 * AURRE: web ez dago listan
+	 *        AURRE: web ez dago listan
 	 */
 	public void webaErantsi(Web web) {
-		this.webenLista.add(web);
+		this.webenLista.put(web.getId(), web);
 	}
 
 	/**
@@ -49,27 +50,28 @@ public class WebenLista {
 
 		Web helburu = this.webenLista.get(idHelburuWeba);
 
-		jatorri.getEstekenLista().webenLista.add(helburu);
+		jatorri.getEstekenLista().webenLista.put(helburu.getId(), helburu);
 
 	}
-	
+
 	/**
-	* URL bat emanda, listan URL hori duen weba itzultzen du
-	* @param url: bilatzen den URLa
-	* @return: URL hori duen web-a (listan badago), bestela null.
-	*/
+	 * URL bat emanda, listan URL hori duen weba itzultzen du
+	 * 
+	 * @param url: bilatzen den URLa
+	 * @return: URL hori duen web-a (listan badago), bestela null.
+	 */
 	public Web bilatuWebakUrlBidez(String url) {
-		
-		for(Web w :this.webenLista) {
-			
-			if(w.getDomeinua().equals(url))
-				
+
+		for (Web w : this.webenLista.values()) {
+
+			if (w.getDomeinua().equals(url))
+
 				return w;
-		
+
 		}
-		
+
 		return null;
-		
+
 	}
 
 }
