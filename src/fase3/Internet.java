@@ -154,7 +154,8 @@ public class Internet {
 	 * @return: true bide bat badago, false bestela
 	 */
 	public boolean konektatutaDaude(String url1, String url2) {
-
+		// Bi url-ak existitzen direla konprobatu elkar konektaturik dauden konprobatzen
+		// hasi aurretik
 		Web jatorria = this.webak.bilatuWebakUrlBidez(url1);
 
 		if (jatorria == null)
@@ -167,17 +168,14 @@ public class Internet {
 
 			return false;
 
+		// Bisitatu beharreko Webak ordenean gordetzeko
 		Queue<Web> itxaroteIlara = new LinkedList<Web>();
 		itxaroteIlara.add(jatorria);
 
+		// Bisitatutako Webak gordetzeko
 		HashSet<Web> bisitatuak = new HashSet<Web>();
-
-		bisitatuak.add(jatorria); // markatu bisitatu gisa
-
-		HashMap<String, String> aurrekoa = new HashMap<String, String>();
-		aurrekoa.put(jatorria.getDomeinua(), null);
-
-		LinkedList<String> bidea = new LinkedList<String>();
+		// markatu bisitatu gisa
+		bisitatuak.add(jatorria);
 
 		while (!itxaroteIlara.isEmpty()) {
 
@@ -186,28 +184,20 @@ public class Internet {
 			for (Web w : erpina.getEstekenLista().getWebenLista()) {
 
 				if (w.equals(helburua)) {
-					aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
 
-					bidea.add(helburua.getDomeinua());
-					break;
+					return true;
 				}
 
 				else if (!bisitatuak.contains(w)) {
-					aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
 
-					bisitatuak.add(w); // markatu bisitatu gisa
+					// markatu bisitatu gisa
+					bisitatuak.add(w);
 					itxaroteIlara.add(w);
 				}
 			}
 		}
 
-		if (bidea.isEmpty())
-
-			return false;
-
-		else
-
-			return true;
+		return false;
 
 	}
 
@@ -220,23 +210,30 @@ public class Internet {
 	 */
 	public void bideaInprimatu(String url1, String url2) {
 
+		// Bi url badaudela frogatzeko bilaketa egin
 		Web jatorria = this.webak.bilatuWebakUrlBidez(url1);
-
 		Web helburua = this.webak.bilatuWebakUrlBidez(url2);
 
+		// Bi url-ak badauden kasuan
 		if (jatorria != null && helburua != null) {
 
+			// Korritzeko falta diren Weben lista
 			Queue<Web> itxaroteIlara = new LinkedList<Web>();
 			itxaroteIlara.add(jatorria);
 
+			// Bisitatutako Webak gordetzeko HashTaula
 			HashSet<Web> bisitatuak = new HashSet<Web>();
+			// markatu bisitatu gisa
+			bisitatuak.add(jatorria);
 
-			bisitatuak.add(jatorria); // markatu bisitatu gisa
-
+			// Bisitatutako web bakoitzaren aurrekoa gordetzen duen HashMapa
+			// Gakoa webaren domeinua, datua webaren aurreko webaren domeinua
 			HashMap<String, String> aurrekoa = new HashMap<String, String>();
 			aurrekoa.put(jatorria.getDomeinua(), null);
 
+			// Inprimatuko den bidea gordetzeko aldagaia
 			String bidea = "";
+
 			while (!itxaroteIlara.isEmpty()) {
 
 				Web erpina = itxaroteIlara.poll();
@@ -244,23 +241,28 @@ public class Internet {
 				for (Web w : erpina.getEstekenLista().getWebenLista()) {
 
 					if (w.equals(helburua)) {
+						// Helburu webaren domeinua eta bere aurreko webaren domeinua gorde
 						aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
-
+						// Bidean helburu weba gorde
 						bidea = helburua.getDomeinua();
 						break;
 					}
 
 					else if (!bisitatuak.contains(w)) {
 						aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
-
-						bisitatuak.add(w); // markatu bisitatu gisa
+						// markatu bisitatu gisa
+						bisitatuak.add(w);
 						itxaroteIlara.add(w);
 					}
 				}
 			}
 
+			// Bidea dagoen kasuan
 			if (bidea != "") {
+
 				String unekoa = aurrekoa.get(helburua.getDomeinua());
+				// HashTaula erabili bidean atzera egiteko eta inprimatu behar diren elementuak
+				// bidea String-ean gordetzeko
 				while (unekoa != null) {
 
 					if (unekoa != null)
@@ -268,6 +270,7 @@ public class Internet {
 					unekoa = aurrekoa.get(unekoa);
 
 				}
+				// Emaitza inprimatu
 				bidea = "<" + bidea + " >\n";
 				System.out.print(bidea);
 
