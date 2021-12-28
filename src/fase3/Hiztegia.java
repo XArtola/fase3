@@ -73,9 +73,7 @@ public class Hiztegia {
 	 * @throws IOException
 	 */
 	private void hitzenWebakKonputatu() {
-//Proba
-//int kont =  0;
-//Proba
+
 		for (Web web : Internet.getInternetInstance().getWebak().getWebenLista()) {
 
 			String domeinua = web.getDomeinua();
@@ -98,7 +96,6 @@ public class Hiztegia {
 							bilaketa.getWebOrrienLista().getWebenLista().add(web);
 							// System.out.println(bilaketa.getDatua() + "\t" + web.getDomeinua());
 							// errepikatuak +=bilaketa.getDatua() + "\t" + web.getDomeinua()+"\n";
-							// kont++;
 						}
 
 					}
@@ -108,8 +105,6 @@ public class Hiztegia {
 			}
 
 		}
-
-		// System.out.println("GUZTIRA "+kont+" elementu errepikatuta");
 	}
 
 	/**

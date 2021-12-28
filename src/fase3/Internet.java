@@ -170,7 +170,6 @@ public class Internet {
 		Queue<Web> itxaroteIlara = new LinkedList<Web>();
 		itxaroteIlara.add(jatorria);
 
-		// LinkedList<KaleErpina> bisitatuak = new LinkedList<KaleErpina>();
 		HashSet<Web> bisitatuak = new HashSet<Web>();
 
 		bisitatuak.add(jatorria); // markatu bisitatu gisa
@@ -185,7 +184,6 @@ public class Internet {
 			Web erpina = itxaroteIlara.poll();
 
 			for (Web w : erpina.getEstekenLista().getWebenLista()) {
-				// aurrekoa.put(w.kaleIzena, erpina.kaleIzena);
 
 				if (w.equals(helburua)) {
 					aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
@@ -231,7 +229,6 @@ public class Internet {
 			Queue<Web> itxaroteIlara = new LinkedList<Web>();
 			itxaroteIlara.add(jatorria);
 
-			// LinkedList<KaleErpina> bisitatuak = new LinkedList<KaleErpina>();
 			HashSet<Web> bisitatuak = new HashSet<Web>();
 
 			bisitatuak.add(jatorria); // markatu bisitatu gisa
@@ -239,19 +236,16 @@ public class Internet {
 			HashMap<String, String> aurrekoa = new HashMap<String, String>();
 			aurrekoa.put(jatorria.getDomeinua(), null);
 
-			// LinkedList<String> bidea = new LinkedList<String>();
 			String bidea = "";
 			while (!itxaroteIlara.isEmpty()) {
 
 				Web erpina = itxaroteIlara.poll();
 
 				for (Web w : erpina.getEstekenLista().getWebenLista()) {
-					// aurrekoa.put(w.kaleIzena, erpina.kaleIzena);
 
 					if (w.equals(helburua)) {
 						aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
 
-						// bidea.add(helburua.getDomeinua());
 						bidea = helburua.getDomeinua();
 						break;
 					}
@@ -264,21 +258,17 @@ public class Internet {
 					}
 				}
 			}
-			// System.out.print(aurrekoa);
 
-			// if (bidea.isEmpty()) {
 			if (bidea != "") {
 				String unekoa = aurrekoa.get(helburua.getDomeinua());
 				while (unekoa != null) {
-					// System.out.print(unekoa + " ");
+
 					if (unekoa != null)
-						// bidea.addFirst(unekoa);
 						bidea = unekoa + ", " + bidea;
-					// System.out.print(unekoa + " ");
 					unekoa = aurrekoa.get(unekoa);
 
 				}
-
+				bidea = "<" + bidea + " >\n";
 				System.out.print(bidea);
 
 			}

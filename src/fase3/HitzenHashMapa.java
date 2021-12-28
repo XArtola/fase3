@@ -11,7 +11,6 @@ public class HitzenHashMapa<K,V> implements HitzenInterfazea {
 	
 	@Override
 	public void hitzaGehitu(Hitza hitza) {
-		// TODO Auto-generated method stub
 		this.hashHiztegia.put((K)hitza.getDatua(), (V)hitza);
 	}
 
