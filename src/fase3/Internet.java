@@ -181,14 +181,13 @@ public class Internet {
 
 			Web erpina = itxaroteIlara.poll();
 
+			if (erpina.equals(helburua))
+
+				return true;
+
 			for (Web w : erpina.getEstekenLista().getWebenLista()) {
 
-				if (w.equals(helburua)) {
-
-					return true;
-				}
-
-				else if (!bisitatuak.contains(w)) {
+				if (!bisitatuak.contains(w)) {
 
 					// markatu bisitatu gisa
 					bisitatuak.add(w);
@@ -234,39 +233,43 @@ public class Internet {
 			// Inprimatuko den bidea gordetzeko aldagaia
 			String bidea = "";
 
+			boolean aurkitua = false;
+
 			while (!itxaroteIlara.isEmpty()) {
 
 				Web erpina = itxaroteIlara.poll();
 
-				for (Web w : erpina.getEstekenLista().getWebenLista()) {
+				if (erpina.equals(helburua)) {
+					// Helburu webaren domeinua eta bere aurreko webaren domeinua gorde
+					aurkitua = true;
+					// Bidean helburu weba gorde
+					bidea = helburua.getDomeinua();
+					break;
+				}
 
-					if (w.equals(helburua)) {
-						// Helburu webaren domeinua eta bere aurreko webaren domeinua gorde
-						aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
-						// Bidean helburu weba gorde
-						bidea = helburua.getDomeinua();
-						break;
-					}
+				else {
+					for (Web w : erpina.getEstekenLista().getWebenLista()) {
 
-					else if (!bisitatuak.contains(w)) {
-						aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
-						// markatu bisitatu gisa
-						bisitatuak.add(w);
-						itxaroteIlara.add(w);
+						if (!bisitatuak.contains(w)) {
+							// Helburu webaren domeinua eta bere aurreko webaren domeinua gorde
+							aurrekoa.put(w.getDomeinua(), erpina.getDomeinua());
+							// markatu bisitatu gisa
+							bisitatuak.add(w);
+							itxaroteIlara.add(w);
+						}
 					}
 				}
 			}
 
 			// Bidea dagoen kasuan
-			if (bidea != "") {
+			if (aurkitua) {
 
 				String unekoa = aurrekoa.get(helburua.getDomeinua());
 				// HashTaula erabili bidean atzera egiteko eta inprimatu behar diren elementuak
 				// bidea String-ean gordetzeko
 				while (unekoa != null) {
 
-					if (unekoa != null)
-						bidea = unekoa + ", " + bidea;
+					bidea = unekoa + ", " + bidea;
 					unekoa = aurrekoa.get(unekoa);
 
 				}

@@ -27,9 +27,9 @@ public class WebenLista {
 	/**
 	 * Web bat gehitzen dio listari
 	 * 
-	 * @param web: gehitzen den weba 
+	 * @param web: gehitzen den weba
 	 * 
-	 * AURRE: web ez dago listan
+	 *        AURRE: web ez dago listan
 	 */
 	public void webaErantsi(Web web) {
 		this.webenLista.add(web);
@@ -52,24 +52,25 @@ public class WebenLista {
 		jatorri.getEstekenLista().webenLista.add(helburu);
 
 	}
-	
+
 	/**
-	* URL bat emanda, listan URL hori duen weba itzultzen du
-	* @param url: bilatzen den URLa
-	* @return: URL hori duen web-a (listan badago), bestela null.
-	*/
+	 * URL bat emanda, listan URL hori duen weba itzultzen du
+	 * 
+	 * @param url: bilatzen den URLa
+	 * @return: URL hori duen web-a (listan badago), bestela null.
+	 */
 	public Web bilatuWebakUrlBidez(String url) {
-		
-		for(Web w :this.webenLista) {
-			
-			if(w.getDomeinua().equals(url))
-				
+
+		for (Web w : this.webenLista) {
+
+			if (w.getDomeinua().equals(url))
+
 				return w;
-		
+
 		}
-		
+
 		return null;
-		
+
 	}
 
 }

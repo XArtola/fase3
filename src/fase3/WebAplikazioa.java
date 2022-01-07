@@ -11,6 +11,7 @@ public class WebAplikazioa {
 		Hiztegia h = Hiztegia.getHiztegiaInstance();
 
 		i.hasieratu("fitxategiak/index", "fitxategiak/pld-arc");
+
 		System.out.println("Webak Kargatuta");
 
 		HitzenHashMapa<String, Hitza> hitzenHashMapa = new HitzenHashMapa<>();
@@ -63,7 +64,7 @@ public class WebAplikazioa {
 			aukera = Integer.parseInt(irakurritakoa);
 			switch (aukera) {
 			case 1:
-				
+
 				System.out.println("Sartu gako-hitz bat:");
 				hitza = sc.nextLine();
 				hitza.trim();
@@ -73,7 +74,7 @@ public class WebAplikazioa {
 				break;
 
 			case 2:
-				
+
 				System.out.println("Sartu lehen URLa:");
 				URL1 = sc.nextLine();
 				URL1.trim();
@@ -93,9 +94,9 @@ public class WebAplikazioa {
 				}
 
 				break;
-				
+
 			case 3:
-				
+
 				System.out.println("Sartu lehen URLa:");
 				URL1 = sc.nextLine();
 				URL1.trim();

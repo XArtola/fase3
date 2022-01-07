@@ -7,18 +7,16 @@ import java.util.Map;
 
 public class HitzenHashMapa<K,V> implements HitzenInterfazea {
 
-	Hashtable<K, V> hashHiztegia = new Hashtable<>();
+	HashMap<String, Hitza> hashHiztegia = new HashMap<String,Hitza>();
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void hitzaGehitu(Hitza hitza) {
-		this.hashHiztegia.put((K)hitza.getDatua(), (V)hitza);
+		this.hashHiztegia.put(hitza.getDatua(), hitza);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Hitza hitzaBilatu(String hitza) {
-		return (Hitza) this.hashHiztegia.get((K)hitza);
+		return (Hitza) this.hashHiztegia.get(hitza);
 	}
 	
 }
